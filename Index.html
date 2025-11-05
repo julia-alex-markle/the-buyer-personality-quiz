@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Buyer Personality Quiz | AlloCodePromo.fr</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    :root {
+      --blue: #3b82f6;
+      --blue-hover: #2563eb;
+      --green-bg: #d1fae5;
+      --green-text: #065f46;
+      --orange-bg: #fef3c7;
+      --orange-text: #92400e;
+      --gray-bg: #f3f4f6;
+      --gray-border: #d1d5db;
+      --card-radius: 12px;
+      --shadow: 0 4px 8px rgba(0,0,0,0.1);
+      --bg-light: #f9fafb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: #111827;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      background: white;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      padding: 28px 32px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    p.subtitle {
+      margin: 6px 0 20px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .question {
+      margin-bottom: 22px;
+    }
+
+    label.question-title {
+      font-weight: 600;
+      color: #374151;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      background: var(--gray-bg);
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--card-radius);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .option.selected {
+      background-color: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    button {
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px 0;
+      border: none;
+      border-radius: var(--card-radius);
+      cursor: pointer;
+      background-color: var(--blue);
+      color: white;
+      box-shadow: var(--shadow);
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--blue-hover);
+    }
+
+    .result-card {
+      margin-top: 28px;
+      border-radius: var(--card-radius);
+      padding: 20px;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .green { background: var(--green-bg); color: var(--green-text); }
+    .orange { background: var(--orange-bg); color: var(--orange-text); }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>The Buyer Personality Quiz</h1>
+    <p class="subtitle">Discover your shopping style with AlloCodePromo.fr</p>
+
+    <form id="quiz-form">
+      <div class="question">
+        <label class="question-title">1. How often do you shop online?</label>
+        <div class="options" data-question="q1">
+          <div class="option" data-value="often">Every week (I can’t resist!)</div>
+          <div class="option" data-value="monthly">Once or twice a month</div>
+          <div class="option" data-value="need">Only when I really need something</div>
+          <div class="option" data-value="rare">I rarely prefer shops</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-title">2. When you see a promotional banner, what do you do?</label>
+        <div class="options" data-question="q2">
+          <div class="option" data-value="impulse">I’m adding it to my basket immediately</div>
+          <div class="option" data-value="compare">I compare prices with other stores</div>
+          <div class="option" data-value="think">I add it to favorites and think about it</div>
+          <div class="option" data-value="ignore">I ignore it unless I already need it</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-title">3. Do you usually use coupons or promo codes?</label>
+        <div class="options" data-question="q3">
+          <div class="option" data-value="always">Always! I research them first</div>
+          <div class="option" data-value="sometimes">Sometimes, if I find them easily</div>
+          <div class="option" data-value="rarely">Rarely, too complicated</div>
+          <div class="option" data-value="never">Never, I don’t care</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-title">4. How do you decide on a purchase?</label>
+        <div class="options" data-question="q4">
+          <div class="option" data-value="trend">By trends and enthusiasm</div>
+          <div class="option" data-value="research">By reading reviews and comparing</div>
+          <div class="option" data-value="wait">After waiting to see if I still want it</div>
+          <div class="option" data-value="need">Only when absolutely necessary</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label class="question-title">5. What is your budget style?</label>
+        <div class="options" data-question="q5">
+          <div class="option" data-value="free">No strict budget</div>
+          <div class="option" data-value="rough">I keep a rough eye on spending</div>
+          <div class="option" data-value="plan">I plan carefully</div>
+          <div class="option" data-value="strict">I stick strictly to my needs</div>
+        </div>
+      </div>
+
+      <button type="submit">Find My Shopping Style</button>
+    </form>
+
+    <section id="result-section" style="display:none;">
+      <div id="result-card" class="result-card"></div>
+    </section>
+
+    <footer>
+      Created by <a href="https://allocodepromo.fr" target="_blank">AlloCodePromo.fr</a> – Helping you shop smarter.
+    </footer>
+  </main>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const parent = opt.parentElement;
+        parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+      });
+    });
+
+    document.getElementById('quiz-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const answers = {};
+      document.querySelectorAll('.options').forEach(group => {
+        const selected = group.querySelector('.option.selected');
+        if (selected) answers[group.dataset.question] = selected.dataset.value;
+      });
+
+      if (Object.keys(answers).length < 5) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      let type = '';
+      let message = '';
+      let style = 'green';
+
+      const impulsive = ['often', 'impulse', 'never', 'trend', 'free'];
+      const mindful = ['rare', 'compare', 'always', 'research', 'plan'];
+      const balanced = ['monthly', 'sometimes', 'think', 'wait', 'rough'];
+
+      const allValues = Object.values(answers);
+
+      if (allValues.some(a => impulsive.includes(a))) {
+        type = 'The Impulsive Buyer 💳';
+        message = 'You love the thrill of shopping! Try setting small limits to stay mindful.';
+        style = 'orange';
+      }
+
+      if (allValues.filter(a => mindful.includes(a)).length >= 3) {
+        type = 'The Smart Saver 💡';
+        message = 'You’re thoughtful and strategic — great at balancing wants and needs.';
+        style = 'green';
+      }
+
+      if (allValues.filter(a => balanced.includes(a)).length >= 3) {
+        type = 'The Practical Planner 📊';
+        message = 'You shop with intention and flexibility — a great balance of logic and enjoyment.';
+        style = 'green';
+      }
+
+      const resultCard = document.getElementById('result-card');
+      resultCard.innerHTML = `<strong>${type}</strong><br>${message}`;
+      resultCard.className = `result-card ${style}`;
+      document.getElementById('result-section').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
